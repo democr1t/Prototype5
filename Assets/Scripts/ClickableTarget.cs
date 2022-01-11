@@ -7,6 +7,7 @@ using TMPro;
 public class ClickableTarget : MonoBehaviour
 {
     [SerializeField] private Rigidbody _rigidbody;
+    [SerializeField] private ParticleSystem _explosionParticle;
     public UnityEvent TargetClicked;
     private float _randomX;
     private float _randomY;
@@ -38,6 +39,7 @@ public class ClickableTarget : MonoBehaviour
     private void OnMouseDown()
     {
         TargetClicked.Invoke();
+        Instantiate(_explosionParticle, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 
