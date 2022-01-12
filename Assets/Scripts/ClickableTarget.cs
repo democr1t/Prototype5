@@ -6,14 +6,13 @@ using UnityEngine.Events;
 public class ClickableTarget : MonoBehaviour
 {
     [SerializeField] private Rigidbody _rigidbody;
-<<<<<<< HEAD
     [SerializeField] private ParticleSystem _exoplositionParcticle;
-    public UnityEvent GoodTargetClicked;
-    public UnityEvent BadTargetClicked;
-=======
     [SerializeField] private ParticleSystem _explosionParticle;
+
+    public UnityEvent GoodTargetClicked;
+    public UnityEvent BadTargetClicked;  
     public UnityEvent TargetClicked;
->>>>>>> e5dd97da3fe2b63df9d247df903000fe954f1413
+
     private float _randomX;
     private float _randomY;
     private float _randomZ;
@@ -43,7 +42,6 @@ public class ClickableTarget : MonoBehaviour
 
     private void OnMouseDown()
     {
-<<<<<<< HEAD
         if (gameObject.CompareTag("GoodTarget"))
         {
             GoodTargetClicked.Invoke();
@@ -53,10 +51,8 @@ public class ClickableTarget : MonoBehaviour
         {
             BadTargetClicked.Invoke();
         }
-=======
         TargetClicked.Invoke();
         Instantiate(_explosionParticle, transform.position, transform.rotation);
->>>>>>> e5dd97da3fe2b63df9d247df903000fe954f1413
         Destroy(gameObject);
     }
 
