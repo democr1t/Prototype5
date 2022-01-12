@@ -126,10 +126,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 5730704613923311913}
+<<<<<<< HEAD
   _exoplositionParcticle: {fileID: 3199346384015752365, guid: 307229a5540374aae98859caad2128a3, type: 3}
   GoodTargetClicked:
     m_PersistentCalls:
       m_Calls: []
   BadTargetClicked:
+=======
+  _explosionParticle: {fileID: 7303472089845130122, guid: 6cbc21f5e9162483993a2b84b14d5ac8, type: 3}
+  TargetClicked:
+>>>>>>> e5dd97da3fe2b63df9d247df903000fe954f1413
     m_PersistentCalls:
       m_Calls: []
