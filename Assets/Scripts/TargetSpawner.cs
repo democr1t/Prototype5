@@ -1,29 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class TargetSpawner : MonoBehaviour
 {
     [SerializeField] private float _period;
     [SerializeField] private List<ClickableTarget> _prefabs;
     [SerializeField] private Score _score;
+    [SerializeField] private GameOver _gameOver;
     private int _randomIndex;
-    private bool _isPlaying = true;
+    public bool IsPlaying { get; private set; }
 
+    
     void Start()
     {
+        IsPlaying = true;
         StartCoroutine(nameof(Spawn));
     }
     
     private IEnumerator Spawn()
     {
-        while(_isPlaying)
+        while(IsPlaying)
         { 
             yield return new WaitForSeconds(_period);
             _randomIndex = Random.Range(0, _prefabs.Count);
             var target = Instantiate(_prefabs[_randomIndex]);
-            target.TargetClicked.AddListener(_score.Renew);
+            target.GoodTargetClicked.AddListener(_score.Renew);
+            target.BadTargetClicked.AddListener(_gameOver.End);
         }
+    }
+
+    public void StopPlaying()
+    {
+        IsPlaying = false;
     }
 }

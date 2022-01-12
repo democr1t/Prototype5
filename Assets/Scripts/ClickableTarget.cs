@@ -1,13 +1,14 @@
 using UnityEngine;
 using UnityEngine.Events;
-using TMPro;
 
 [RequireComponent(typeof(Rigidbody))]
 
 public class ClickableTarget : MonoBehaviour
 {
     [SerializeField] private Rigidbody _rigidbody;
-    public UnityEvent TargetClicked;
+    [SerializeField] private ParticleSystem _exoplositionParcticle;
+    public UnityEvent GoodTargetClicked;
+    public UnityEvent BadTargetClicked;
     private float _randomX;
     private float _randomY;
     private float _randomZ;
@@ -37,12 +38,20 @@ public class ClickableTarget : MonoBehaviour
 
     private void OnMouseDown()
     {
-        TargetClicked.Invoke();
+        if (gameObject.CompareTag("GoodTarget"))
+        {
+            GoodTargetClicked.Invoke();
+            Instantiate(_exoplositionParcticle, transform.position, transform.rotation);
+        }
+        else
+        {
+            BadTargetClicked.Invoke();
+        }
         Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
-    {    
+    {
         Destroy(gameObject);    
     }
 }
